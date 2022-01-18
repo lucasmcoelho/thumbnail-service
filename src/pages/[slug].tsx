@@ -7,6 +7,7 @@ interface PostProps {
   title: string
   description: string
   content: string
+  thumbUrl: string
 }
 
 export default function Post(props: PostProps) {
@@ -14,6 +15,7 @@ export default function Post(props: PostProps) {
     <PostLayout 
       title={props.title} 
       description={props.description} 
+      thumbUrl={props.thumbUrl}
       content={props.content}
     />
   )

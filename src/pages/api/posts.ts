@@ -22,12 +22,17 @@ export async function getAllPosts() {
 export async function getPostBySlug(slug: any) {
   const fileContent = await import(`../../_posts/${slug}.md`)
 
-  const meta = matter(fileContent.default)
-  const content = marked(meta.content)   
+  const meta = matter(fileContent.default);
+  const content = marked(meta.content);
+
+  const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://thumbnail-service.vercel.app/';
+
+  const thumbUrl = `${baseUrl}/api/thumbnail.png?title=${meta.data.title}`
 
   return {
     title: meta.data.title, 
     description: meta.data.description, 
     content,
+    thumbUrl
   }
 }
